@@ -22,3 +22,32 @@ As such, you can write all of your models as
 [attrs](https://github.com/python-attrs/attrs) which gives you the handy
 ability to use [cattrs](https://github.com/Tinche/cattrs) for dealing with your
 serialization and deserialization of your models to and from JSON.
+
+# Submitting a pull request
+
+If you would like to submit a pull request it would be very helpful to run the
+following steps locally to make sure the build of the new code will pass the 
+checks in CircleCI.
+
+If you don't want to run each of these steps manually you can just run the
+handy `.circleci/run_locally.sh` script.
+
+## Linting Git commits with `gitlint`
+
+Install [gitlint](https://jorisroovers.github.io/gitlint/) and simply run
+`pipenv run gitlint --commits fbb925a...HEAD` to check the formatting and style of your 
+commit messages.
+(Note: gitlint does not currently support Windows, please run under 
+[WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10) for a
+workaround)
+
+## Linting code with `Flake8`
+
+Make sure you install the [Flake8](http://flake8.pycqa.org/en/latest/) Python
+linting tool and run `pipenv run flake8 --show-source --import-order-style pep8`
+
+## Running `Pytest`
+
+Make sure you run your tests by installing the dev dependencies with
+`pipenv install --dev` and run the tests by executing
+`pipenv run pytest --cov-fail-under=90`
